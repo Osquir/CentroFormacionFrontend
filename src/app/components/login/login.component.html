@@ -1,0 +1,49 @@
+<!-- <div>
+  <form (submit)="login()">
+    <input type="text" name="login" placeholder="Ingrese usuario" autofocus [(ngModel)]="user.login">
+    <input type="password" name="password" placeholder="Ingrese password" [(ngModel)]="user.password">
+    <button type="submit">Ingresar</button>
+  </form>
+</div> -->
+
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <h2>Login</h2>
+    </div>
+    <form [formGroup]="formLogin" (submit)="login()">
+      <div class="login-input">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input formControlName="login" matInput required placeholder="Ingrese usuario" autofocus
+            [(ngModel)]="user.login">
+          <mat-error *ngIf="formLogin.get('login')?.hasError('required') && formLogin.get('login')?.touched">
+            El campo es <strong>requerido</strong>
+          </mat-error>
+          <mat-error *ngIf="formLogin.get('login')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>20 caracteres</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="">
+        <span class="aLink">Forgot Password?</span>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" formControlName="password" matInput required placeholder="Ingrese password"
+            [(ngModel)]="user.password">
+        </mat-form-field>
+        <mat-error *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">
+          El campo es <strong>requerido</strong>
+        </mat-error>
+        <mat-error *ngIf="formLogin.get('password')?.hasError('maxlength')">
+          El campo no debe tener mas de <strong>20 caracteres</strong>
+        </mat-error>
+        <mat-error *ngIf="formLogin.get('password')?.hasError('minlength')">
+          El campo debe tener al menos <strong>8 caracteres</strong>
+        </mat-error>
+      </div>
+      <button class="full-width" mat-flat-button type="submit" color="primary">Ingresar</button>
+    </form>
+  </mat-card-content>
+</mat-card>

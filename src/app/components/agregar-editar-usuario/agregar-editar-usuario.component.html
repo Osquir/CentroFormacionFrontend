@@ -1,0 +1,101 @@
+<div class="container">
+  <h2 mat-dialog-title>{{title}} Usuario</h2>
+  <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+</div>
+
+<form [formGroup]="formUsuario" (ngSubmit)="addEditUsuario()">
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input formControlName="login" matInput placeholder="Ingrese el Username" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formUsuario.get('login')?.hasError('required') && formUsuario.get('login')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formUsuario.get('login')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>20 caracteres</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" formControlName="password" matInput placeholder="Ingrese el Password"
+            autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formUsuario.get('password')?.hasError('required') && formUsuario.get('password')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formUsuario.get('password')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>20 caracteres</strong>
+          </span>
+          <span *ngIf="formUsuario.get('password')?.hasError('minlength')">El campo debe tener minimo <strong>8
+              caracteres</strong></span>
+        </div>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Confirmar Password</mat-label>
+          <input type="password" formControlName="confirmPassword" matInput placeholder="Ingrese el Password"
+            autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span
+            *ngIf="formUsuario.get('confirmPassword')?.hasError('required') && formUsuario.get('confirmPassword')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formUsuario.get('confirmPassword')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>20 caracteres</strong>
+          </span>
+          <span *ngIf="formUsuario.get('confirmPassword')?.hasError('minlength')">El campo debe tener minimo <strong>8
+              caracteres</strong></span>
+          <span *ngIf="formUsuario.get('confirmPassword')?.hasError('noSonIguales')">Los campos deben ser
+            <strong>iguales</strong></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="nombre" matInput placeholder="Ingrese el Nombre" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formUsuario.get('nombre')?.hasError('required') && formUsuario.get('nombre')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formUsuario.get('nombre')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>20 caracteres</strong>
+          </span>
+        </div>
+      </div>
+
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" formControlName="email" matInput placeholder="Ingrese el Email" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formUsuario.get('email')?.hasError('required') && formUsuario.get('email')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formUsuario.get('email')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>20 caracteres</strong>
+          </span>
+          <span *ngIf="formUsuario.get('email')?.hasError('email')">El campo debe ser un <strong>email</strong></span>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" (click)="cancelar()" mat-button>Cancelar</button>
+    <button type="submit" [disabled]="formUsuario.invalid" mat-button color="primary">{{title}}</button>
+  </mat-dialog-actions>
+</form>

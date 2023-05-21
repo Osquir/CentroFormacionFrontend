@@ -1,0 +1,83 @@
+<div class="container">
+  <h2 mat-dialog-title>{{title}} Curso</h2>
+  <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+</div>
+
+<form [formGroup]="formCurso" (ngSubmit)="addEditCurso()">
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Codigo</mat-label>
+          <input formControlName="codigo" matInput placeholder="Ingrese codigo" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formCurso.get('codigo')?.hasError('required') && formCurso.get('codigo')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formCurso.get('codigo')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>10 caracteres</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="nombre" matInput placeholder="Ingrese nombre del curso" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formCurso.get('nombre')?.hasError('required') && formCurso.get('nombre')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formCurso.get('nombre')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>20 caracteres</strong>
+          </span>
+        </div>
+      </div>
+
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Creditos</mat-label>
+          <input type="number" formControlName="creditos" matInput placeholder="Ingrese el # de creditos"
+            autocomplete="off">
+        </mat-form-field>
+        <span *ngIf="formCurso.get('creditos')?.hasError('maxlength')">
+          El campo no debe tener mas de <strong>2 numeros</strong>
+        </span>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Descripcion</mat-label>
+          <input formControlName="descripcion" matInput placeholder="Ingrese una descripcion" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formCurso.get('descripcion')?.hasError('required') && formCurso.get('descripcion')?.touched">
+            El campo es <strong>requerido</strong>
+          </span>
+          <span *ngIf="formCurso.get('descripcion')?.hasError('maxlength')">
+            El campo no debe tener mas de <strong>50 caracteres</strong>
+          </span>
+        </div>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label>Temario</mat-label>
+          <input formControlName="temario" matInput placeholder="Ingrese el temario" autocomplete="off">
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" (click)="cancelar()" mat-button>Cancelar</button>
+    <button type="submit" [disabled]="formCurso.invalid" mat-button>Guardar</button>
+  </mat-dialog-actions>
+
+</form>
