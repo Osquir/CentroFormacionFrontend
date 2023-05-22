@@ -25,6 +25,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component'; 
 //guards
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { AlumnoCursoComponent } from './components/alumno-curso/alumno-curso.component';
+import { ListAlumnoCursoComponent } from './components/list-alumno-curso/list-alumno-curso.component';
 
 
 
@@ -39,6 +41,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     AgregarEditarCursoComponent,
     ListUsuariosComponent,
     AgregarEditarUsuarioComponent,
+    AlumnoCursoComponent,
+    ListAlumnoCursoComponent,
   ],
   imports: [
     BrowserModule,
